@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity=""
+    android:stretchColumns="*">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="300dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="150dp"
+            android:layout_marginLeft="30dp"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="190dp"
+
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/total"
+                android:textColor="@color/colorPrimary"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textColor="@color/colorPrimary"
+                android:textSize="35sp"
+
+                />
+        </TableRow>
+
+        <TableRow android:padding="5dp"
+            android:layout_marginLeft="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/correct"
+                android:textColor="@color/colorRight"
+                android:textSize="35sp" />
+
+            <TextView
+                android:id="@+id/correct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textColor="@color/colorRight"
+                android:textSize="35sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="30dp"
+
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/wrong"
+                android:textColor="@color/colorWrong"
+                android:textSize="35sp" />
+
+
+            <TextView
+                android:id="@+id/wrong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:gravity="center_horizontal"
+                android:text=""
+                android:textColor="@color/colorWrong"
+                android:textSize="35sp" />
+
+        </TableRow>
+    </TableLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="75dp"
+
+        android:layout_marginBottom="158dp"
+        android:textAlignment="center">
+
+        <Button
+            android:id="@+id/savescore"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="56dp"
+            android:layout_marginLeft="56dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_toStartOf="@+id/retry"
+            android:layout_toLeftOf="@+id/retry"
+            android:background="@color/colorPrimaryLight"
+            android:text="@string/save_score"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/retry"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="66dp"
+            android:layout_marginRight="66dp"
+            android:layout_marginBottom="134dp"
+            android:background="@color/colorPrimaryLight"
+            android:text="@string/retry"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
