@@ -58,7 +58,8 @@ public class MainActivity extends AppCompatActivity {
             i.putExtra("correct", String.valueOf(correct));
             i.putExtra("incorrect", String.valueOf(wrong));
             startActivity(i);
-        } else {
+            finish()
+;        } else {
 
             databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child(String.valueOf(total));
             databaseReference.addValueEventListener(new ValueEventListener() {
