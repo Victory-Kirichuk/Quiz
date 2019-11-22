@@ -16,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.example.newquiz.Model.Question;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,8 +25,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
+public class MainActivity extends AppCompatActivity {
+    private static List<Integer> randomQueue;
     Button b1, b2, b3, b4;
     TextView qT, clock;
     DatabaseReference databaseReference;
@@ -32,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     int correct = 0;
     int wrong = 0;
 
-    @Override
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -61,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
             finish()
 ;        } else {
 
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child(String.valueOf(total));
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child(String.valueOf(randNumber()));
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -82,16 +91,16 @@ public class MainActivity extends AppCompatActivity {
                             b2.setEnabled(false);
                             b1.setEnabled(false);
                             if (b1.getText().toString().equals(question.getAnswer())) {
-                                b1.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -102,22 +111,22 @@ public class MainActivity extends AppCompatActivity {
                                 }, 1200);
                             } else {
                                 wrong++;
-                                b1.setBackgroundColor(getResources().getColor(R.color.colorWrong));
+                                b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorWrong,null));
                                 if (b2.getText().toString().equals(question.getAnswer())) {
-                                    b2.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b3.getText().toString().equals(question.getAnswer())) {
-                                    b3.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b4.getText().toString().equals(question.getAnswer())) {
-                                    b4.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -137,16 +146,16 @@ public class MainActivity extends AppCompatActivity {
                             b2.setEnabled(false);
                             b1.setEnabled(false);
                             if (b2.getText().toString().equals(question.getAnswer())) {
-                                b2.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -156,22 +165,22 @@ public class MainActivity extends AppCompatActivity {
                                 }, 1200);
                             } else {
                                 wrong++;
-                                b2.setBackgroundColor(getResources().getColor(R.color.colorWrong));
+                                b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorWrong,null));
                                 if (b1.getText().toString().equals(question.getAnswer())) {
-                                    b1.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b3.getText().toString().equals(question.getAnswer())) {
-                                    b3.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b4.getText().toString().equals(question.getAnswer())) {
-                                    b4.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -192,16 +201,16 @@ public class MainActivity extends AppCompatActivity {
                             b2.setEnabled(false);
                             b1.setEnabled(false);
                             if (b3.getText().toString().equals(question.getAnswer())) {
-                                b3.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -211,22 +220,22 @@ public class MainActivity extends AppCompatActivity {
                                 }, 1200);
                             } else {
                                 wrong++;
-                                b3.setBackgroundColor(getResources().getColor(R.color.colorWrong));
+                                b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorWrong,null));
                                 if (b2.getText().toString().equals(question.getAnswer())) {
-                                    b2.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b1.getText().toString().equals(question.getAnswer())) {
-                                    b1.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b4.getText().toString().equals(question.getAnswer())) {
-                                    b4.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -248,16 +257,16 @@ public class MainActivity extends AppCompatActivity {
                             b2.setEnabled(false);
                             b1.setEnabled(false);
                             if (b4.getText().toString().equals(question.getAnswer())) {
-                                b4.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         correct++;
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -267,22 +276,22 @@ public class MainActivity extends AppCompatActivity {
                                 }, 1200);
                             } else {
                                 wrong++;
-                                b4.setBackgroundColor(getResources().getColor(R.color.colorWrong));
+                                b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorWrong,null));
                                 if (b2.getText().toString().equals(question.getAnswer())) {
-                                    b2.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b3.getText().toString().equals(question.getAnswer())) {
-                                    b3.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 } else if (b1.getText().toString().equals(question.getAnswer())) {
-                                    b1.setBackgroundColor(getResources().getColor(R.color.colorRight));
+                                    b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorRight,null));
                                 }
                                 Handler handler = new Handler();
                                 handler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        b1.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b2.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b4.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
-                                        b3.setBackgroundColor(getResources().getColor(R.color.colorPrimaryLight));
+                                        b1.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b2.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b4.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
+                                        b3.setBackgroundColor(ResourcesCompat.getColor(getResources(),R.color.colorPrimaryLight,null));
                                         b4.setEnabled(true);
                                         b3.setEnabled(true);
                                         b2.setEnabled(true);
@@ -351,4 +360,42 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).create().show();
     }
+
+
+
+//    private static void randomList(){
+//       /* randomQueue = new ArrayList<>();*/
+//        ArrayList<Integer> numbers = new ArrayList<Integer>();
+//        for (int i =1; i < 11; i++){
+//            numbers.add(i);
+//        }
+//        Collections.shuffle(numbers);
+//
+//
+//    }
+//
+//
+//    private static int randNumber(){
+//
+//        Random rand = new Random();
+//
+//       /* Integer randomInt = rand.nextInt(numbers.size());
+//        numbers.remove(randomInt);*/
+//        return randomInt;
+//    }
+
+
+public static int randNumber(){
+    int[] myArray;
+    final int max = 10; // Максимальное число для диапазона от 0 до max
+    final int rnd = rnd(max);
+    myArray = new int[10];
+        return rnd;
+}
+
+    public static int rnd(final int max)
+    {
+        return (int) (Math.random() * max+1);
+    }
+
 }
