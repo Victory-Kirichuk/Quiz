@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     int total = 0;
     int correct = 0;
     int wrong = 0;
-
+    int number;
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         clock = (TextView) findViewById(R.id.clock);
      //   reverseTimer(40, clock);
         total = total + 1;
+            number=total;
         updateQuestion();
 
     }
@@ -62,6 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (total > 10) {
 
+
+           /* if(number>10)
+            {number=number-10;}*/
             Intent i = new Intent(MainActivity.this, ResultActivity.class);
             i.putExtra("total", String.valueOf(correct+wrong));
             i.putExtra("correct", String.valueOf(correct));
@@ -70,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
             finish()
 ;        } else {
 
-            databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child(String.valueOf(randNumber()));
+            databaseReference = FirebaseDatabase.getInstance().getReference().child("Question").child(String.valueOf(total));
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -385,7 +389,7 @@ public class MainActivity extends AppCompatActivity {
 //    }
 
 
-public static int randNumber(){
+/*public static int randNumber(){
     int[] myArray;
     final int max = 10; // Максимальное число для диапазона от 0 до max
     final int rnd = rnd(max);
@@ -397,5 +401,7 @@ public static int randNumber(){
     {
         return (int) (Math.random() * max+1);
     }
+    */
+
 
 }
